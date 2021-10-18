@@ -1,8 +1,0 @@
-@charset "UTF-8";
-
-body { 
-	-fx-fill: blue;
-	fill : blue;
-/* 	-fx-hgap: 75px;
-	-fx-vgap: 75px; */
-}
