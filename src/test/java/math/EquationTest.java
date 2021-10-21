@@ -1,6 +1,7 @@
 package math;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.Random;
 
@@ -27,4 +28,6 @@ public class EquationTest{
 		A[2]=e.sins[2].getA();		B[2]=e.sins[2].getB();	C[2]=e.sins[2].getC();
 		assertEquals(e.getY(x), A[0]*Math.sin(B[0]*x-C[0])+A[1]*Math.sin(B[1]*x-C[1])+A[2]*Math.sin(B[2]*x-C[2]), 0.01);
 	}
+	
+	
 }
