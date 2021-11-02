@@ -1,4 +1,4 @@
-package math;
+package com.daniel.evolutionary_sine.math;
 
 import java.util.Random;
 

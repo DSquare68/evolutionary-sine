@@ -8,6 +8,8 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.daniel.evolutionary_sine.math.Equation;
+
 public class EquationTest{
 
 	private Equation e;

@@ -6,6 +6,9 @@ import java.util.Random;
 
 import org.junit.Test;
 
+import com.daniel.evolutionary_sine.math.Mutation;
+import com.daniel.evolutionary_sine.math.MutationType;
+
 public class MutationTest {
 	@Test
 	public void myOwnClassicMethodTest() {
