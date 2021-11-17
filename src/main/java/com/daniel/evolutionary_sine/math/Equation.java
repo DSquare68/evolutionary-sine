@@ -1,5 +1,6 @@
 package com.daniel.evolutionary_sine.math;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -24,7 +25,14 @@ public class Equation {
 		sins[2]= new Sine(-10+20*r.nextDouble(),-Math.PI+2*Math.PI*r.nextDouble(),2*Math.PI*r.nextDouble());
 	}
 	public double getY(double x) {
-		return sins[0].getResult(x)+sins[1].getResult(x)+sins[2].getResult(x);
+		return  sins[0].getResult(x)+sins[1].getResult(x)+sins[2].getResult(x);
+	}
+	public double getDerivative(double x) {
+		return sins[0].getCosinus(x)*sins[0].getB()+sins[1].getCosinus(x)*sins[1].getB()+sins[2].getCosinus(x)*sins[2].getB();
+	}
+	public double getSquereDerivative(double x) {
+		return 2*(sins[0].getResult(x)+sins[1].getResult(x)+sins[2].getResult(x))*
+				(sins[0].getB()*sins[0].getCosinus(x)+sins[1].getB()*sins[1].getCosinus(x)+sins[2].getB()*sins[2].getCosinus(x));
 	}
 	@Override
 	public String toString() {
@@ -79,6 +87,10 @@ public class Equation {
 
 		public double getResult(double x) {
 			return A*Math.sin(B*x-C);
+		}
+		
+		public double getCosinus(double x) {
+			return A*Math.cos(B*x-C);
 		}
 		@Override
 		public String toString() {
