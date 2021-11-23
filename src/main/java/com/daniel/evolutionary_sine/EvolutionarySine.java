@@ -1,5 +1,7 @@
 package com.daniel.evolutionary_sine;
 
+import java.util.ArrayList;
+
 import com.daniel.evolutionary_sine.gui.MainPane;
 
 import javafx.application.Application;
@@ -28,5 +30,25 @@ public class EvolutionarySine extends Application {
     public static void main(String[] args) {
         launch();
     }
+    public class Points{
+    	private ArrayList<Point> points = new ArrayList<Point>();
+    	
+    	public Points(ArrayList<Point> p) {
+    		this.points=p;
+    	}
+    	public Points() {
+			// TODO Auto-generated constructor stub
+		}
+		public ArrayList<Point> getPoints(){
+    		return points;
+    	}
+    }
+    public class Point{
+    	public Point(double d, double e) {
+			this.x=d;
+			this.y=e;
+		}
 
+		public double x,y;
+    }
 }
