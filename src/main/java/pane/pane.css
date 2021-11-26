@@ -1,0 +1,16 @@
+#variables-pane{
+	-fx-background-color: #000055;
+	background-color: #000055;
+}
+#settings-pane{
+	-fx-background-color: #005500;
+	background-color: #005500;
+}
+#graph-pane{
+	-fx-background-color: #550000;
+	background-color: #550000;
+}
+#equations-pane{
+	-fx-background-color: #550550;
+	background-color: #550550;
+}

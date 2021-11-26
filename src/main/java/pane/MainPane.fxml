@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import com.daniel.evolutionary_sine.gui.VariablesPane?>
+<?import com.daniel.evolutionary_sine.gui.SettingsPane?>
+<?import com.daniel.evolutionary_sine.gui.GraphPane?>
+<?import com.daniel.evolutionary_sine.gui.EquationsPane?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1" >
+	<VariablesPane id="variables-pane" 
+	GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="0"  GridPane.rowSpan="3">
+	</VariablesPane>
+	<SettingsPane id="settings-pane" 
+	GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="0"  GridPane.rowSpan="3">
+	</SettingsPane>
+		<GraphPane id="graph-pane"
+
+	GridPane.columnIndex="0" GridPane.columnSpan="7" GridPane.rowIndex="2"  GridPane.rowSpan="4">
+	</GraphPane>
+	<EquationsPane  id="equations-pane" 
+
+	GridPane.columnIndex="6" GridPane.columnSpan="3" GridPane.rowIndex="0"  GridPane.rowSpan="6">
+	</EquationsPane>
+	
+	
+	
+</GridPane>
+

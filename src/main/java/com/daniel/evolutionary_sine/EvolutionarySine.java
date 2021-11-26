@@ -1,11 +1,18 @@
 package com.daniel.evolutionary_sine;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-import com.daniel.evolutionary_sine.gui.MainPane;
+import com.daniel.evolutionary_sine.gui.GraphPane;
+import com.daniel.evolutionary_sine.gui.VariableVBox;
+import com.daniel.evolutionary_sine.gui.VariablesPane;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
@@ -15,15 +22,18 @@ import javafx.stage.Stage;
 public class EvolutionarySine extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException {
         var javaVersion = SystemInfo.javaVersion();
         var javafxVersion = SystemInfo.javafxVersion();
         var width = DimensionInfo.getWidth();
         var height = DimensionInfo.getHeight();
 
         //var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new MainPane(7,5), width*0.8, height*0.8);
-        stage.setScene(scene);
+        Pane scene =FXMLLoader.load(getClass().getResource("/pane/MainPane.fxml"));
+        scene.getStylesheets().add(getClass().getResource("/pane/pane.css").toExternalForm());
+        ((GridPane) scene).setHgap(width*0.6/7);
+        ((GridPane) scene).setVgap(height*0.6/5);
+        stage.setScene(new Scene(scene,width*0.6/7*8, height*0.6));
         stage.show();
     }
 

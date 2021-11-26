@@ -5,4 +5,6 @@ module com.daniel.evolutionary_sine {
 	requires junit;
 	requires io.jenetics.base;
     exports com.daniel.evolutionary_sine;
+    exports com.daniel.evolutionary_sine.gui;
+    requires javafx.fxml;
 }
