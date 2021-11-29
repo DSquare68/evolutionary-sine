@@ -12,4 +12,7 @@ public class DimensionInfo {
 	public static double getHeight() {
 		return r2d.getHeight();
 	}
+	public final static double WIDTH=getWidth(), HEIGHT=getHeight();
+	public final static double H_GAP=WIDTH*0.6/7, V_GAP=HEIGHT*0.6/5;
+	
 }

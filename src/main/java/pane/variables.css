@@ -1,0 +1,38 @@
+.point , .bottom > Label{
+	-fx-background-color: #234C67;
+	background-color: #234C67;
+}
+.center{
+	-fx-alignment: center;
+	align-content: center;
+	/*
+	-fx-background-color: #F34C67;
+	background-color: #F34C67; 
+	*/
+}
+.bottom{
+	-fx-alignment: center;
+	align-content: center;
+	-fx-padding:10px;
+}
+.bottom > Label, .bottom >TextField,.bottom > Button{
+	-fx-font-size:15pt;
+	font-size:15pt;
+	
+}
+.bottom > Label{
+	-fx-padding: 8px 0px 8px 0px;
+}
+.point > Label{
+	-fx-font-size:22pt;
+	font-size:22pt;
+}
+.point{
+	-fx-alignment: center-right;
+	align-content: center;
+}
+Button{
+	-fx-padding:20px;
+	-fx-border-insets: 15px;
+    -fx-background-insets: 15px;
+}
