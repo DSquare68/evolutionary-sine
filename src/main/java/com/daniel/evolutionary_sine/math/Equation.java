@@ -38,7 +38,10 @@ public class Equation {
 	public String toString() {
 		double x = new Random().nextDouble();
 		sins[0].setX(x);sins[1].setX(x);sins[2].setX(x);
-		return sins[0].toString()+"+"+sins[1].toString()+"+"+sins[2].toString()+"\ty:"+getY(x);
+		return sins[0].toString()+(sins[1].getA()>=0 ? "+"+sins[1].toString() : sins[1].toString()) +(sins[2].getA()>=0 ? "+"+sins[2].toString() : sins[2].toString())+"\ty:"+getY(x);
+	}
+	public String toStringShort() {
+		return sins[0].toStringShort()+(sins[1].getA()>=0 ? "+"+sins[1].toStringShort() : sins[1].toStringShort()) +(sins[2].getA()>=0 ? "+"+sins[2].toStringShort() : sins[2].toStringShort());
 	}
 	/**
 	 *  Asin(Bx-C)
@@ -95,6 +98,9 @@ public class Equation {
 		@Override
 		public String toString() {
 			return A+"sin("+B+"*"+x+"-"+C+")";
+		}
+		public String toStringShort() {
+			return String.format("%.2f*sin(%.2f*x-%.2f)", new Object[] {A,B,C});
 		}
 	}
 }
