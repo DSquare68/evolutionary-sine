@@ -1,7 +1,9 @@
 package com.daniel.evolutionary_sine.gui;
 
 import com.daniel.evolutionary_sine.DimensionInfo;
+import com.daniel.evolutionary_sine.math.Points;
 
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,20 +17,24 @@ import javafx.scene.layout.VBox;
 public class VariablesPane extends VBox{
 	private static GridPane center;
 	private static  HBox bottom;
-	private double height,width;
-	
+	private double height,width; 
+	public VariablesPane(boolean b) {}
 	public VariablesPane() {
 		this.getStylesheets().add(getClass().getResource("/pane/variables.css").toExternalForm());
 		center = new  GridPane();
 		center.getStyleClass().add("center");
 		center.setHgap(DimensionInfo.H_GAP/4.0);
 		center.setVgap(DimensionInfo.V_GAP/8.0);
-		for(int i=0;i<10;i++)
-			center.add(new PointPane(new Object[] {1+i, 1+i/7.0,1+i/11.0+1}),i%2*2,i%2==0 ? i/2 : (i-1)/2 ,2,1 );
+		//for(int i=0;i<10;i++)
+			//center.add(new PointPane(new Object[] {1+i, 1+i/7.0,1+i/11.0+1}),i%2*2,i%2==0 ? i/2 : (i-1)/2 ,2,1 );
 		setBottom();
 		this.getChildren().addAll(center,bottom);
 	}
-	
+	public  static void setValues() {
+		VariablesPane vp = new VariablesPane(true);
+		for(int i =0; i<Points.points.size();i++)
+			center.add(vp.new PointPane(new Object[] {1,Points.points.get(i).getX(), Points.points.get(i).getY()}),i%2*2,i%2==0 ? i/2 : (i-1)/2 ,2,1);
+	}
 	private void setBottom() {
 		Label xl= new Label("Set X:"), yl= new Label("Set Y:");
 		TextField xf= new TextField(),yf= new TextField();
@@ -38,6 +44,10 @@ public class VariablesPane extends VBox{
 		bottom = new HBox();
 		bottom.getStyleClass().add("bottom");
 		bottom.getChildren().addAll(xl,xf,yl,yf,add);
+		add.setOnAction(e->{
+			Points.points.add(new Point2D(Double.valueOf(xf.getText().toString()),Double.valueOf(yf.getText().toString())));
+			GraphPane.setData(Points.points.get(Points.points.size()-1));
+		});
 	}
 	
 	private GraphicsContext graphicsContextInit(int w,int h) {
