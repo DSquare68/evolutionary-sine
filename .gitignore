@@ -278,3 +278,4 @@ DerivedData
 .update-config
 
 Contrib/**/
+target/classes/META-INF/maven/com.daniel/evolutionary-sine/pom.properties
