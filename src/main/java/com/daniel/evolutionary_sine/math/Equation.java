@@ -8,7 +8,7 @@ import java.util.Random;
  *		y=A1sin(B1x-C1)+A2sin(B2x-C2)+A3sin(B3x-C3)
  */
 public class Equation {
-	Sine[] sins = new Sine[3];
+	public Sine[] sins = new Sine[3];
 	
 	public Equation() {
 		random();
@@ -42,6 +42,9 @@ public class Equation {
 	}
 	public String toStringShort() {
 		return sins[0].toStringShort()+(sins[1].getA()>=0 ? "+"+sins[1].toStringShort() : sins[1].toStringShort()) +(sins[2].getA()>=0 ? "+"+sins[2].toStringShort() : sins[2].toStringShort());
+	}
+	public Sine[]  getSins() {
+		return sins;
 	}
 	/**
 	 *  Asin(Bx-C)

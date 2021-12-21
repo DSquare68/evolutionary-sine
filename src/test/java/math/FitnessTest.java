@@ -21,7 +21,7 @@ public class FitnessTest {
 		p.getPoints().add(new Point2D(4.0,1));
 		p.getPoints().add(new Point2D(5.0,0.05));
 	}
-	private Fitness f= new Fitness(p,new Equation(new Equation().new Sine(0.9,0.3,0.4), new Equation().new Sine(1.5,0.7,0.8), new Equation().new Sine(0.7,0.05,0.9)));
+	private Fitness f= new Fitness(new Equation(new Equation().new Sine(0.9,0.3,0.4), new Equation().new Sine(1.5,0.7,0.8), new Equation().new Sine(0.7,0.05,0.9)));
 	
 	@Test
 	public void testFindFitness() {

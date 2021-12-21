@@ -1,5 +1,6 @@
 package com.daniel.evolutionary_sine.gui;
 
+import com.daniel.evolutionary_sine.engine.Engine;
 import com.daniel.evolutionary_sine.math.Equation;
 import com.daniel.evolutionary_sine.math.Points;
 
@@ -14,11 +15,12 @@ public class GraphPane extends LineChart<Number, Number>{
 	final static Axis<Number> xAxis= new NumberAxis(-25,25,1);
 	final static Axis<Number> yAxis= new NumberAxis(-15,15,1);
 	final static XYChart.Series seriesPoints = new XYChart.Series();
+	XYChart.Series series = new XYChart.Series();
+	Equation e; 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public GraphPane() {
 		super(xAxis, yAxis);
-		Equation e = new Equation();
-		
+		this.setAnimated(false);
 		this.getData().add(seriesPoints);
 		this.setOnMouseClicked(m->{
 			if(Points.points.size()>9)
@@ -28,11 +30,27 @@ public class GraphPane extends LineChart<Number, Number>{
 			VariablesPane.setValues();
 			GraphPane.setData(p);
 		});
-		XYChart.Series series = new XYChart.Series();
+		  this.setCreateSymbols(true); //dots
+		draw();
+	}
+	public void draw() {	
+		e = setEquestion();
+		if(e==null)
+			return;
+		//this.getData().clear();
+		this.setAnimated(false);
+		this.getData().remove(series);
+		series.getData().clear();
 		for(double i=-25;i<26; i+=0.1)
 			series.getData().add(new XYChart.Data(i, e.getY(i)));
-        this.setCreateSymbols(true); //dots
-        this.getData().add(series);
+        this.getData().addAll(series);
+		
+	}
+	private Equation setEquestion() {
+		if(Engine.eqF.size()==0)
+			return null;
+		return Engine.eqF.get(0).getEquation();
+		
 	}
 	public static void setData(Point2D p){
 		seriesPoints.getData().add(new XYChart.Data(p.getX(),p.getY()));

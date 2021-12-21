@@ -13,11 +13,10 @@ import javafx.geometry.Point2D;
  */
 public class Fitness {
 	private Equation eq;
-	private Points p;
+	private ArrayList<Point2D> p =Points.getPoints();;
 	ArrayList<Double> roots = new ArrayList<>();
 	
-	public Fitness(Points p, Equation eq) {
-		this.p =p;
+	public Fitness(Equation eq) {
 		this.eq=eq;
 	}
 	private double getDistance(Point2D p,double x1) {
@@ -27,7 +26,7 @@ public class Fitness {
  * 		finding point x1 when distance from x0 is th nearest for eq.getY(x0)
  * @return point x1
  */
-	double r=Double.MAX_VALUE;
+	double r=30;
 	private double findPoint(Point2D p) {
 		roots = new ArrayList<>();
 		final double STEP=0.01;
@@ -55,15 +54,14 @@ public class Fitness {
 			points[0]-=STEP;
 			points[1]+=STEP;
 			if(roots.size()>0)
-				r = roots.stream().mapToDouble(d->d).min().orElse(Double.MAX_VALUE);
-			
-			
+				r = roots.stream().mapToDouble(d->d).min().getAsDouble();
 		}
 		return r;
 	}
 	public double findFitness() {
-		double median= p.getPoints().stream().mapToDouble(p->getDistance(p,findPoint(p))).sum()/p.getPoints().size();
-		return p.getPoints().stream().mapToDouble(p->Math.abs(median -getDistance(p,findPoint(p)))).sum()/p.getPoints().size();
+		double median= p.stream().mapToDouble(p->getDistance(p,findPoint(p))).sum()/p.size();
+		 Double d =p.stream().mapToDouble(p->Math.abs(median -getDistance(p,findPoint(p)))).sum()/p.size();
+		 return d;
 	}
 	
 	/**

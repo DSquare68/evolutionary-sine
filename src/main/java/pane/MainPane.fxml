@@ -14,7 +14,7 @@
 	GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="0"  GridPane.rowSpan="3">
 	</SettingsPane>
 		<GraphPane id="graph-pane"
-
+		animated="false"
 	GridPane.columnIndex="0" GridPane.columnSpan="7" GridPane.rowIndex="2"  GridPane.rowSpan="4">
 	</GraphPane>
 	<EquationsPane  id="equations-pane" 

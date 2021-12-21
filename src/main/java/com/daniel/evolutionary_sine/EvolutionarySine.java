@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class EvolutionarySine extends Application {
-
+	public static Pane scene;
     @Override
     public void start(Stage stage) throws IOException {
         var javaVersion = SystemInfo.javaVersion();
@@ -29,7 +29,7 @@ public class EvolutionarySine extends Application {
         var height = DimensionInfo.getHeight();
 
         //var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        Pane scene =FXMLLoader.load(getClass().getResource("/pane/MainPane.fxml"));
+        scene =FXMLLoader.load(getClass().getResource("/pane/MainPane.fxml"));
         scene.getStylesheets().add(getClass().getResource("/pane/pane.css").toExternalForm());
         ((GridPane) scene).setHgap(width*0.6/7);
         ((GridPane) scene).setVgap(height*0.6/5);

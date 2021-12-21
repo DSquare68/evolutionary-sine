@@ -8,8 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class EquationsPane extends VBox{
-	ArrayList<LabelText> labelsText; 
-	ArrayList<EquationLabel> labels; 
+	public static ArrayList<LabelText> labelsText; 
+	public static ArrayList<EquationLabel> labels; 
 
 	public EquationsPane() {
 		this.getStylesheets().add(getClass().getResource("/pane/equations.css").toExternalForm());
@@ -26,14 +26,19 @@ public class EquationsPane extends VBox{
 	private ArrayList<LabelText> sort(ArrayList<LabelText> labes) {
 		return labes;
 	}
-	class EquationLabel extends Label{
+	public class EquationLabel extends Label {
 		
 		public EquationLabel(LabelText lt) {
 			getStyleClass().add("equationlabel");
+			setTextByEquation(lt);
+		}
+
+		public void setTextByEquation(LabelText lt) {
 			this.setText(String.format(lt.getLp()+". "+"%71s"+"\t"+lt.getAge(), lt.getEq().toStringShort()));
+			
 		}
 	}
-	class LabelText{
+	public class LabelText{
 		private Equation eq;
 		private int lp,age;
 

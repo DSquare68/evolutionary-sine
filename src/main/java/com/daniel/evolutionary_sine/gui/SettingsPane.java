@@ -1,8 +1,35 @@
 package com.daniel.evolutionary_sine.gui;
 
+
+import com.daniel.evolutionary_sine.engine.Engine;
+
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 public class SettingsPane extends VBox{
-	
+	public SettingsPane() {
+		Button b = new Button("Start");
+		b.setStyle("-fx-alignment: center; align-content: center;");
+		Task<Void> engineStart = new Task<Void>() {
+
+			@Override
+			protected Void call() throws Exception {
+				// TODO Auto-generated method stub
+				
+					Engine.start();
+					Thread.sleep(1);
+					return null;
+			}
+		};
+		b.setOnAction(e->{Thread t = new Thread(engineStart);
+			t.setDaemon(true);
+			t.start();
+			//new Thread(()->Engine.step()).start();
+		});
+		
+		this.getChildren().add(b);
+	}
 
 }

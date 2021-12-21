@@ -12,7 +12,7 @@ public class Points{
 	public Points() {
 		// TODO Auto-generated constructor stub
 	}
-	public ArrayList<Point2D> getPoints(){
+	public static ArrayList<Point2D> getPoints(){
 		return points;
 	}
 }
