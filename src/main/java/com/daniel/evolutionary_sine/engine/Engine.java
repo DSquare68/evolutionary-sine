@@ -25,24 +25,29 @@ public class Engine {
 	}
 	public static void start() {
 		for(int i=0;i<100;i++)
-			eqF.add(new EquationFitness(new Equation(), 0));
+			eqF.add(new EquationFitness(new Equation(), 2));
+		eqF = (ArrayList<EquationFitness>) eqF.stream().sorted(Comparator.comparingDouble(EquationFitness::getFitness)).collect(Collectors.toList());
+		try {
 		while(true) {
 			step();
 			updateEquations();
 			updateGraph();
 		}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void step() {
 		Random r = new Random();
-		int[] classic= new int [20],crossA= new int[15],crossB= new int[15],sin= new int[15],abc= new int[15];
-		for(int i=0;i<20;i++)
+		int[] classic= new int [15],crossA= new int[35],crossB= new int[35],sin= new int[35],abc= new int[35];
+		for(int i=0;i<classic.length;i++)
 			classic[i]=r.nextInt(70)+30;
-		for(int i=0;i<15;i++) {
+		for(int i=0;i<crossA.length;i++) {
 			crossA[i]=r.nextInt(70)+30;
 			crossB[i]=r.nextInt(70)+30;
 			if(crossA[i]==crossB[i])
-				--i;
+				i=i==0 ? 0:--i ;
 			sin[i]=r.nextInt(3);
 			abc[i]=r.nextInt(3);
 		}
@@ -52,8 +57,8 @@ public class Engine {
 			int k= r.nextInt(3);
 			switch(k) {
 				case 0	->  	eqF.get(i).getEquation().getSins()[j].setA(new Mutation(eqF.get(i).getEquation().getSins()[j].getA(),0.0, MutationType.classic).getNumber1());
-				case 1	->		eqF.get(i).getEquation().getSins()[j].setB(new Mutation(eqF.get(i).getEquation().getSins()[j].getA(),0.0, MutationType.classic).getNumber1());
-				case 	2	-> 	eqF.get(i).getEquation().getSins()[j].setC(new Mutation(eqF.get(i).getEquation().getSins()[j].getA(),0.0, MutationType.classic).getNumber1());
+				case 1	->		eqF.get(i).getEquation().getSins()[j].setB(new Mutation(eqF.get(i).getEquation().getSins()[j].getB(),0.0, MutationType.classic).getNumber1());
+				case 	2	-> 	eqF.get(i).getEquation().getSins()[j].setC(new Mutation(eqF.get(i).getEquation().getSins()[j].getC(),0.0, MutationType.classic).getNumber1());
 			}
 		}
 		for(int i=0;i<crossA.length;i++) {
@@ -88,9 +93,14 @@ public class Engine {
 	private static void updateEquations() {
 		
 		for(EquationFitness ef : eqF) {
+			EquationsPane.labelsText.get(eqF.indexOf(ef)).setAge(
+					EquationsPane.labelsText.get(eqF.indexOf(ef)).getEq().equals(ef.getEquation()) ? 
+					EquationsPane.labelsText.get(eqF.indexOf(ef)).getAge()+1 :
+						1);
 			EquationsPane.labelsText.get(eqF.indexOf(ef)).setEq( ef.getEquation());
+			
 		}
 			Platform.runLater(() -> {p=0;EquationsPane.labels.forEach(e->e.setTextByEquation(EquationsPane.labelsText.get(p++)));});
-		System.out.println(eqF.get(0).getFitness()+"\t"+eqF.get(10).getFitness()+"\t"+eqF.get(20).getFitness()+"\t"+eqF.get(3).getFitness());
+		System.out.println(eqF.get(0).getFitness()+"\t"+eqF.get(1).getFitness()+"\t"+eqF.get(20).getFitness()+"\t"+eqF.get(99).getFitness());
 	}
 }

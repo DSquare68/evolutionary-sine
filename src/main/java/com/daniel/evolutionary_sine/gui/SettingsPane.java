@@ -16,16 +16,15 @@ public class SettingsPane extends VBox{
 
 			@Override
 			protected Void call() throws Exception {
-				// TODO Auto-generated method stub
-				
-					Engine.start();
-					Thread.sleep(1);
-					return null;
-			}
-		};
+				Engine.start();
+				return null;
+			}};
 		b.setOnAction(e->{Thread t = new Thread(engineStart);
-			t.setDaemon(true);
-			t.start();
+		try {	
+		t.start();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}
 			//new Thread(()->Engine.step()).start();
 		});
 		

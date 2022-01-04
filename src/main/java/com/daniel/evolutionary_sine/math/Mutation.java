@@ -16,9 +16,11 @@ public class Mutation {
 		}
 	}
 	public double getNumber1() {
+		if(valueA>60) return new Random().nextDouble();
 		return this.valueA;
 	}
 	public double getNumber2() {
+		if(valueB>60) return new Random().nextDouble();
 		return this.valueB;
 	}
 	private void crossingOverMethod() {
@@ -29,22 +31,32 @@ public class Mutation {
 		if(num2.contains("E"))
 			num2= num2.substring(0, num2.indexOf('E')-2);
 		Set<Integer> s = new TreeSet<>();
+		int limit = Math.min(num1.length()-1, num2.length()-1) - (num1.indexOf('.')==num2.indexOf('.') ? 1 : 2);
+		if(n>limit)
+			n=limit;
 		for(int i=0;s.size()<n;i++) {
 			int k=new Random().nextInt(Math.min(num1.length()-1,num2.length()-1));
+			//System.out.println(k+"  "+s+"   "+Math.min(num1.length()-1,num2.length()-1)+"   "+n);
 			if(k==num1.indexOf('.')||k==num2.indexOf('.'))
 				continue;
 			s.add(k);
 		}
+		//s.add(2);
 		for(int a : s) {
 			//System.out.println(a);
+			try {
 			char c1 = num1.charAt(a), c2 = num2.charAt(a);
 			num1=String.valueOf(switchDigit(a,c2, num1));
 			num2=String.valueOf(switchDigit(a,c1, num2));
+			}catch (StringIndexOutOfBoundsException e) {System.out.println(e.getMessage()+ "\n"+num1+"    "+a+"    "+num2+"   "+Math.min(num1.length()-1,num2.length()-1));}
+			
 		}
+		try {
 		if(num1.contains("E"))
 			num1= num1.substring(0, num1.indexOf('E')-2);
 		if(num2.contains("E"))
 			num2= num2.substring(0, num2.indexOf('E')-2);
+		}catch(Exception e) {e.printStackTrace();}
 		valueA=Double.valueOf(num1);
 		valueB=Double.valueOf(num2);
 	}
@@ -70,8 +82,15 @@ public class Mutation {
 			int indexOfDecimal = num.indexOf(".");
 			return Double.valueOf(num.substring(indexOfDecimal))+x1;
 		}
-		beg= num.substring(0,  a-1 );
-		end=num.substring(a+1);
-		return Double.valueOf(beg+x1+end);
+		if(a==num.length()+1)
+			return Double.valueOf(num+x1);
+		if(a==num.length()) {
+			beg= num.substring(0,  a-1 );
+			return Double.valueOf(beg+x1);
+		}else {
+			beg= num.substring(0,  a-1 );
+			end=num.substring(a+1);
+			return Double.valueOf(beg+x1+end);
+		}
 	}
 }

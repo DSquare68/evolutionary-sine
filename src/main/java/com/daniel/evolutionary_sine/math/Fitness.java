@@ -20,7 +20,8 @@ public class Fitness {
 		this.eq=eq;
 	}
 	private double getDistance(Point2D p,double x1) {
-		return Math.sqrt(Math.pow(p.getX()-x1,2)+ Math.pow(p.getY()-eq.getY(x1),2));
+		double d = Math.sqrt(Math.pow(p.getX()-x1,2)+ Math.pow(p.getY()-eq.getY(x1),2));
+		return d;
 	}
 /**
  * 		finding point x1 when distance from x0 is th nearest for eq.getY(x0)
@@ -40,6 +41,9 @@ public class Fitness {
 		values[3] =values[2];
 		points[0]-=STEP;
 		points[1]+=STEP;
+		//System.out.println(getDistance(p, r));
+		if(getDistance(p, r)>10e9||getDistance(p, r)<-10e9)
+			return 200;
 		while((Math.abs(points[1]-p.getX()))<getDistance(p, r)||(Math.abs(points[0]-p.getX()))<getDistance(p,r)) {
 			values[0] = getDerivativeFromDistance(p,points[0]);
 			values[2] =getDerivativeFromDistance(p,points[1]);
@@ -59,7 +63,7 @@ public class Fitness {
 		return r;
 	}
 	public double findFitness() {
-		double median= p.stream().mapToDouble(p->getDistance(p,findPoint(p))).sum()/p.size();
+		double median= p.stream().mapToDouble(p->	getDistance(p,findPoint(p))).sum()/p.size();		
 		 Double d =p.stream().mapToDouble(p->Math.abs(median -getDistance(p,findPoint(p)))).sum()/p.size();
 		 return d;
 	}

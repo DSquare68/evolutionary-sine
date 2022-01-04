@@ -13,7 +13,8 @@ public class MutationTest {
 	@Test
 	public void myOwnClassicMethodTest() {
 		double d1 = new Random().nextDouble();
-		double d2 = new Mutation(d1, 0.0, MutationType.classic).getNumber1();
+		double d2 = new Mutation(2.3434443434, 0.0, MutationType.classic).getNumber1();
+		System.out.println(d1+"   "+d2);
 		assertNotEquals(d1, d2);
 	}
 
